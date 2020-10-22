@@ -1,0 +1,45 @@
+import React from 'react';
+import { Layout } from 'antd';
+import { Switch, Route, Router, Redirect } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import NotFound from '#/components/NotFound';
+import { RoutePath } from '#/interfaces';
+import Dashboard from '#/pages/Dashboard';
+import Mine from '#/pages/Mine';
+import LabWrapper from '#/components/LabWrapper';
+import styles from './app.module.less';
+
+const { Content, Footer } = Layout;
+
+const history = createBrowserHistory();
+
+function App() {
+  return (
+    <Layout className={styles.layout}>
+      <Switch>
+        <Route exact path="/" component={() => <Dashboard />} />
+        <Route path="/:labId/:labSubRoute?">
+          <Content className={styles.content}>
+            <LabWrapper>
+              <Switch>
+                <Route path={`/:labId/${RoutePath.Mine}`} component={() => <Mine />} />
+                <Route exact path="/:labId" component={() => <Redirect to={RoutePath.Mine} />} />
+                <Route component={() => <NotFound />} />
+              </Switch>
+            </LabWrapper>
+          </Content>
+        </Route>
+        <Route component={() => <NotFound />} />
+      </Switch>
+      <Footer style={{ textAlign: 'center' }}>footer</Footer>
+    </Layout>
+  );
+}
+
+export default function AppProvider() {
+  return (
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+}
