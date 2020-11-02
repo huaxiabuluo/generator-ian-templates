@@ -2,7 +2,11 @@
   "presets": [
     ["@babel/preset-env", {
       "modules": false,
-      "useBuiltIns": "usage"
+      "useBuiltIns": "usage",
+      "corejs": {
+        "version": 3,
+        "proposals": true
+      }
     }],
     "@babel/preset-react",
     "@babel/preset-typescript"

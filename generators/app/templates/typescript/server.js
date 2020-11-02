@@ -6,7 +6,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const config = require('./tools/webpack.config.base');
 const portal = config.devServer.https ? 'https' : 'http';
 const port = config.devServer.port;
-const ip = 'dev.taobao.com';
+const ip = '127.0.0.1';
 
 // for (let key in config.entry) {
 //   const arr = config.entry[key];

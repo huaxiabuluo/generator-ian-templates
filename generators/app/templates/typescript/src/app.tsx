@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Layout } from 'antd';
 import { Switch, Route, Router, Redirect } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import NotFound from '#/components/NotFound';
-import { RoutePath } from '#/interfaces';
-import Dashboard from '#/pages/Dashboard';
-import Mine from '#/pages/Mine';
-import LabWrapper from '#/components/LabWrapper';
+// import NotFound from '~/components/NotFound';
+import { RoutePath } from '~/interfaces';
+import Dashboard from '~/pages/Dashboard';
+// import Mine from '~/pages/Mine';
+// import LabWrapper from '~/components/LabWrapper';
 import styles from './app.module.less';
 
 const { Content, Footer } = Layout;
 
 const history = createBrowserHistory();
+
+const Mine = React.lazy(() => import(/* webpackChunkName: "mine" */ '~/pages/Mine'));
+const NotFound = React.lazy(() => import(/* webpackChunkName: "notfound" */ '~/components/NotFound'));
 
 function App() {
   return (
@@ -20,13 +23,11 @@ function App() {
         <Route exact path="/" component={() => <Dashboard />} />
         <Route path="/:labId/:labSubRoute?">
           <Content className={styles.content}>
-            <LabWrapper>
-              <Switch>
-                <Route path={`/:labId/${RoutePath.Mine}`} component={() => <Mine />} />
-                <Route exact path="/:labId" component={() => <Redirect to={RoutePath.Mine} />} />
-                <Route component={() => <NotFound />} />
-              </Switch>
-            </LabWrapper>
+            <Switch>
+              <Route path={`/:labId/${RoutePath.Mine}`} component={() => <Mine />} />
+              <Route exact path="/:labId" component={() => <Redirect to={RoutePath.Mine} />} />
+              <Route component={() => <NotFound />} />
+            </Switch>
           </Content>
         </Route>
         <Route component={() => <NotFound />} />
@@ -39,7 +40,9 @@ function App() {
 export default function AppProvider() {
   return (
     <Router history={history}>
-      <App />
+      <Suspense fallback={null}>
+        <App />
+      </Suspense>
     </Router>
   );
 }

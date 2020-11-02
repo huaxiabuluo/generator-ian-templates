@@ -1,5 +1,5 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { getEnv } = require('./env');
@@ -9,18 +9,18 @@ const useCssPlugin = () => getEnv() !== 'development';
 
 module.exports = {
   entry: {
-    common: ['react', 'react-dom'],
     app: [path.resolve(__dirname, '../src/boot-loader.tsx')],
   },
   output: {
     filename: '[name].js',
+    chunkFilename: '[name]~[chunkhash:5].chunk.js',
     path: path.resolve(__dirname, '..', './build'),
   },
   mode: isDevEnv() ? 'development' : 'production',
   resolve: {
     alias: {
       'react-dom': '@hot-loader/react-dom',
-      '#': path.resolve(__dirname, '..', './src'),
+      '~': path.resolve(__dirname, '..', './src/'),
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
@@ -41,7 +41,7 @@ module.exports = {
           useCssPlugin() ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader',
           'postcss-loader',
-          { loader: 'less-loader', options: { javascriptEnabled: true } },
+          { loader: 'less-loader', options: { lessOptions: { javascriptEnabled: true } } },
         ],
       },
       {
@@ -52,12 +52,16 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
-              localIdentName: '[local]___[hash:base64:5]',
+              modules: {
+                mode: 'local',
+                exportGlobals: true,
+                localIdentName: '[local]__[hash:base64:5]',
+                localIdentContext: path.resolve(__dirname, '..', 'src'),
+              },
             },
           },
           'postcss-loader',
-          { loader: 'less-loader', options: { javascriptEnabled: true } },
+          { loader: 'less-loader', options: { lessOptions: { javascriptEnabled: true } } },
         ],
       },
     ],
@@ -66,7 +70,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    new CleanWebpackPlugin(['build'], { root: path.resolve(__dirname, '..') }),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, '..', 'build')],
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './template.html',
@@ -74,7 +80,7 @@ module.exports = {
       inject: false,
       prefix: (() => {
         if (isDevEnv()) {
-          return 'http://dev.taobao.com:8080/';
+          return 'http://127.0.0.1:8080/';
         }
 
         return '';
@@ -94,11 +100,18 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        default: false,
-        commons: {
-          name: 'common',
+        // default: false,
+        base: {
+          name: 'base',
           chunks: 'initial',
+          test: /[\\/]node_modules[\\/](react|react-dom|@hot-loader\/react-dom)[\\/]/,
+          priority: -10,
+        },
+        commons: {
           minChunks: 2,
+          name: 'commons',
+          chunks: 'async',
+          reuseExistingChunk: true,
         },
       },
     },
@@ -108,20 +121,18 @@ module.exports = {
     publicPath: '/',
     stats: { colors: true },
     historyApiFallback: {
-      rewrites: [
-        { from: /^\/?(\w+\/?)*$/g, to: '/index.html' },
-      ]
+      rewrites: [{ from: /^\/?(\w+\/?)*$/g, to: '/index.html' }],
     },
     disableHostCheck: true,
     hot: true,
     inline: true,
     port: 8080,
-    proxy: {
-      '/api': {
-        target: 'https://abmate.alibaba.net/',
-        secure: false,
-        changeOrigin: true,
-      },
-    },
+    // proxy: {
+    //   '/api': {
+    //     target: 'https://127.0.0.1/',
+    //     secure: false,
+    //     changeOrigin: true,
+    //   },
+    // },
   },
 };

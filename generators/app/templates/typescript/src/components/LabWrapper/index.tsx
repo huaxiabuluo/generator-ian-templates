@@ -6,9 +6,5 @@ export default function LabWrapper({ children }: { children: JSX.Element }) {
   useEffect(() => {
     setTimeout(() => switchLoading(false), 2000);
   }, []);
-  return (
-    <Spin spinning={loading}>
-      {children}
-    </Spin>
-  );
+  return <Spin spinning={loading}>{children}</Spin>;
 }
