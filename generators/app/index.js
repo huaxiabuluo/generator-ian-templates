@@ -17,6 +17,16 @@ module.exports = class extends Generator {
     }
   }
 
+  _initGit() {
+    try {
+      this.spawnCommandSync('git', ['init', '--quiet'], {
+        cwd: this.destinationPath(this.data.applicationName)
+      });
+    } catch (e) {
+      this.log(chalk.red('\nGit repo not initialized!\n'));
+    }
+  }
+
   prompting() {
     return this.prompt([
       {
@@ -112,6 +122,8 @@ module.exports = class extends Generator {
   }
 
   install() {
+    this._initGit();
+
     const { applicationName } = this.data;
 
     this.log(chalk.cyan('\nInstalling dependencies with npm...\n'));
