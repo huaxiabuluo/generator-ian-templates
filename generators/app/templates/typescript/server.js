@@ -1,12 +1,13 @@
-const webpack = require('webpack');
-const openBrowser = require('react-dev-utils/openBrowser');
+const Webpack = require('webpack');
 // const internalIP = require('internal-ip');
 const WebpackDevServer = require('webpack-dev-server');
-
+const openBrowser = require('react-dev-utils/openBrowser');
 const config = require('./tools/webpack.config.base');
-const portal = config.devServer.https ? 'https' : 'http';
-const port = config.devServer.port;
-const ip = '127.0.0.1';
+
+const { devServer } = config;
+const portal = devServer.https ? 'https' : 'http';
+const port = devServer.port || 8080;
+const ip = devServer.host || '127.0.0.1';
 
 // for (let key in config.entry) {
 //   const arr = config.entry[key];
@@ -19,11 +20,11 @@ const ip = '127.0.0.1';
 // config.plugins.push(new webpack.HotModuleReplacementPlugin());
 // config.plugins.push(new webpack.NamedModulesPlugin());
 
-new WebpackDevServer(webpack(config), config.devServer).listen(port, ip, (err) => {
+new WebpackDevServer(config.devServer, Webpack(config)).startCallback((err) => {
   if (err) {
-    console.log(err);
+    console.error(err);
+    return;
   }
-  console.log('Listening at localhost:' + port);
-  console.log('Opening your system browser...');
   openBrowser(portal + '://' + (ip || '127.0.0.1') + ':' + port);
+  console.log('Opening your system browser...');
 });

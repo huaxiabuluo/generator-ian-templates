@@ -117,16 +117,18 @@ module.exports = {
     },
   },
   devServer: {
-    contentBase: path.resolve(__dirname, '../html'),
-    publicPath: '/',
-    stats: { colors: true },
+    static: {
+      directory: path.join(__dirname, '..', 'public'),
+      publicPath: '/',
+    },
     historyApiFallback: {
       rewrites: [{ from: /^\/?(\w+\/?)*$/g, to: '/index.html' }],
     },
-    disableHostCheck: true,
+    allowedHosts: 'all',
     hot: true,
-    inline: true,
     port: 8080,
+    liveReload: false,
+    host: '127.0.0.1',
     // proxy: {
     //   '/api': {
     //     target: 'https://127.0.0.1/',
