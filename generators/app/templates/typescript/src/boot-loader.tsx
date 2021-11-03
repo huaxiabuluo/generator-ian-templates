@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { hot } from 'react-hot-loader/root';
-import App from './app';
-
-const HotApp = hot(App);
+import { HotApp } from './app';
 
 ReactDOM.render(<HotApp />, document.getElementById('root'));

@@ -9,7 +9,7 @@ const useCssPlugin = () => getEnv() !== 'development';
 
 module.exports = {
   entry: {
-    app: [path.resolve(__dirname, '../src/boot-loader.tsx')],
+    app: ['react-hot-loader/patch', path.resolve(__dirname, '../src/boot-loader.tsx')],
   },
   output: {
     filename: '[name].js',
@@ -17,9 +17,10 @@ module.exports = {
     path: path.resolve(__dirname, '..', './build'),
   },
   mode: isDevEnv() ? 'development' : 'production',
+  stats: 'errors-warnings',
   resolve: {
     alias: {
-      'react-dom': '@hot-loader/react-dom',
+      // 'react-dom': '@hot-loader/react-dom',
       '~': path.resolve(__dirname, '..', './src/'),
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -117,18 +118,22 @@ module.exports = {
     },
   },
   devServer: {
-    static: {
-      directory: path.join(__dirname, '..', 'public'),
-      publicPath: '/',
-    },
     historyApiFallback: {
       rewrites: [{ from: /^\/?(\w+\/?)*$/g, to: '/index.html' }],
     },
     allowedHosts: 'all',
     hot: true,
-    port: 8080,
-    liveReload: false,
+    // inline: true,
     host: '127.0.0.1',
+    port: 8080,
+    static: {
+      staticOptions: {
+        directory: path.resolve(__dirname, '../html'),
+        publicPath: '/',
+        // redirect: true,
+        serveIndex: true,
+      },
+    },
     // proxy: {
     //   '/api': {
     //     target: 'https://127.0.0.1/',

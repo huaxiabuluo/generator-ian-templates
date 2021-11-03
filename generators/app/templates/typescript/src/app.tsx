@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import React, { Suspense } from 'react';
 import { Layout } from 'antd';
 import { Switch, Route, Router, Redirect } from 'react-router-dom';
@@ -46,3 +47,5 @@ export default function AppProvider() {
     </Router>
   );
 }
+
+export const HotApp = hot(AppProvider);
