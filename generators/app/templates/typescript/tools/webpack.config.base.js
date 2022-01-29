@@ -20,7 +20,7 @@ module.exports = {
   stats: 'errors-warnings',
   resolve: {
     alias: {
-      // 'react-dom': '@hot-loader/react-dom',
+      'react-dom': '@hot-loader/react-dom',
       '~': path.resolve(__dirname, '..', './src/'),
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -84,17 +84,7 @@ module.exports = {
           return 'http://127.0.0.1:8080/';
         }
 
-        return '';
-
-        // ["--def_publish_type=webapp","--def_publish_pages=[\"index.html\"]","--def_publish_env=daily"]
-        // const buildArgs = process.env.BUILD_ARGV || '';
-        // const envMatch = buildArgs.match(/def_publish_env=(\w+)/) || [];
-        // const isDaily = envMatch[1] === 'daily';
-
-        // const gitBranch = process.env.BUILD_GIT_BRANCH || '';
-        // const versionMatch = gitBranch.match(/\d+(\.\d+){2}/g) || ['0.0.1'];
-
-        // return `//${isDaily ? 'dev.' : ''}g.alicdn.com/bshop/h5-blockchain-2019/${versionMatch[0]}/`;
+        return './';
       })(),
     }),
   ],

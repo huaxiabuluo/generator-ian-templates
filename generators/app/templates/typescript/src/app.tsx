@@ -1,8 +1,7 @@
 import { hot } from 'react-hot-loader/root';
 import React, { Suspense } from 'react';
 import { Layout } from 'antd';
-import { Switch, Route, Router, Redirect } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { BrowserRouter, Route, Routes, Navigate, Outlet } from 'react-router-dom';
 // import NotFound from '~/components/NotFound';
 import { RoutePath } from '~/interfaces';
 import Dashboard from '~/pages/Dashboard';
@@ -12,39 +11,40 @@ import styles from './app.module.less';
 
 const { Content, Footer } = Layout;
 
-const history = createBrowserHistory();
-
 const Mine = React.lazy(() => import(/* webpackChunkName: "mine" */ '~/pages/Mine'));
 const NotFound = React.lazy(() => import(/* webpackChunkName: "notfound" */ '~/components/NotFound'));
 
 function App() {
   return (
-    <Layout className={styles.layout}>
-      <Switch>
-        <Route exact path="/" component={() => <Dashboard />} />
-        <Route path="/:labId/:labSubRoute?">
-          <Content className={styles.content}>
-            <Switch>
-              <Route path={`/:labId/${RoutePath.Mine}`} component={() => <Mine />} />
-              <Route exact path="/:labId" component={() => <Redirect to={RoutePath.Mine} />} />
-              <Route component={() => <NotFound />} />
-            </Switch>
-          </Content>
-        </Route>
-        <Route component={() => <NotFound />} />
-      </Switch>
-      <Footer style={{ textAlign: 'center' }}>footer</Footer>
-    </Layout>
+    <BrowserRouter>
+      <Layout className={styles.layout}>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route
+            path="/:labId"
+            element={
+              <Content className={styles.content}>
+                <Outlet />
+              </Content>
+            }
+          >
+            <Route path={RoutePath.Mine} element={<Mine />} />
+            <Route index element={<Navigate to={RoutePath.Mine} replace={true} />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer style={{ textAlign: 'center' }}>footer</Footer>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
 export default function AppProvider() {
   return (
-    <Router history={history}>
-      <Suspense fallback={null}>
-        <App />
-      </Suspense>
-    </Router>
+    <Suspense fallback={null}>
+      <App />
+    </Suspense>
   );
 }
 
