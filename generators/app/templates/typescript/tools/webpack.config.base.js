@@ -15,6 +15,7 @@ module.exports = {
     filename: '[name].js',
     chunkFilename: '[name]~[chunkhash:5].chunk.js',
     path: path.resolve(__dirname, '..', './build'),
+    assetModuleFilename: 'images/[name][ext]',
   },
   mode: isDevEnv() ? 'development' : 'production',
   stats: 'errors-warnings',
@@ -31,6 +32,25 @@ module.exports = {
         test: /\.(j|t)sx?$/,
         exclude: /node_modules/,
         use: 'babel-loader',
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              esModule: false,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: '[name].[ext]',
+                  esModule: false,
+                },
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
