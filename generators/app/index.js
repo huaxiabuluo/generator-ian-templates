@@ -33,15 +33,40 @@ const tplPathMap = {
         message: '开发者邮件',
         default: gitUser.email,
       },
-      {
-        type: 'input',
-        name: 'abcJson',
-        required: true,
-        message: '是否使用 abc.json 文件? (y/n)',
-      },
     ],
     ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
     ruleFiles: ['babelrc', 'gitignore', 'eslintrc', 'eslintignore', 'prettierrc'],
+  },
+  'Nextjs + Koa + Material-UI + TypeScript': {
+    path: 'nextjs-koa-mui',
+    prompt: [
+      {
+        type: 'input',
+        name: 'applicationName',
+        required: true,
+        message: '项目名称',
+        validate: (input) => !!input.trim(),
+      },
+      {
+        type: 'input',
+        name: 'applicationDesc',
+        message: '项目描述',
+      },
+      {
+        type: 'input',
+        name: 'authorName',
+        message: '开发者名称',
+        default: gitUser.name,
+      },
+      {
+        type: 'input',
+        name: 'authorEmail',
+        message: '开发者邮件',
+        default: gitUser.email,
+      },
+    ],
+    ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
+    ruleFiles: ['babelrc', 'gitignore', 'eslintrc', 'prettierrc', 'stylelintrc.json'],
   },
   'npm-package': {
     path: 'npm-package',
@@ -77,21 +102,13 @@ const tplPathMap = {
         message: '开发者邮件',
         default: gitUser.email,
       },
-      {
-        type: 'input',
-        name: 'abcJson',
-        required: true,
-        message: '是否使用 abc.json 文件? (y/n)',
-      },
     ],
     ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
     ruleFiles: ['babelrc.js', 'gitignore', 'eslintrc', 'eslintignore', 'prettierrc', 'npmignore'],
   },
 };
 
-module.exports = class extends (
-  Generator
-) {
+module.exports = class extends Generator {
   _writeFile(templatePath, destinationPath, params) {
     if (!this.fs.exists(destinationPath)) {
       this.fs.copyTpl(templatePath, destinationPath, params);
@@ -123,9 +140,8 @@ module.exports = class extends (
   }
 
   writing() {
-    const { applicationName, templateName, applicationDesc, abcJson, authorName, authorEmail, packageName } = this.config;
+    const { applicationName, templateName, applicationDesc, authorName, authorEmail, packageName } = this.config;
     const { path: tplPath, ejsTplFiles = [], ruleFiles = [] } = tplPathMap[templateName] || {};
-    const useAbcJson = abcJson.toLowerCase() === 'y';
 
     assert(tplPath, '还没有对应的模板哦~');
 
@@ -151,7 +167,6 @@ module.exports = class extends (
           '**/.npmignore',
           '**/.DS_Store',
           ...ejsTplFiles.concat(ruleFiles).map((f) => `**/${f}`),
-          !useAbcJson ? '**/abc.json' : null,
         ].filter(Boolean),
       },
     });

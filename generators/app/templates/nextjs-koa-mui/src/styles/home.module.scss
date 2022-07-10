@@ -1,0 +1,103 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.contentLayout {
+  min-width: 840px;
+}
+
+.layoutHeader:global(.ant-layout-header) {
+  padding: 0;
+  background-color: #fff;
+}
+
+.switchVersion {
+  cursor: pointer;
+}
+
+.contentArea {
+  position: relative;
+  min-height: 360px;
+  padding: 24px;
+  background-color: #fff;
+
+  &.noPadding {
+    padding: 0;
+  }
+
+  .secretInputArea {
+    margin-top: 24px;
+
+    .secretAction {
+      margin-top: 12px;
+      text-align: center;
+
+      & > button:not(:last-child) {
+        margin-right: 12px;
+      }
+    }
+  }
+}
+
+.validityTime {
+  display: block;
+
+  & > p {
+    margin: 0;
+    line-height: 1;
+
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
+  }
+}
+
+.infoArea {
+  margin-top: 24px;
+
+  & :global {
+    .ant-card-body {
+      padding-bottom: 0;
+      background-color: #fafafa;
+    }
+  }
+}
+
+.license {
+  .title {
+    color: rgb(0 0 0 / 85%);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .licenseInfo {
+    margin-top: 12px;
+    padding: 12px;
+    font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
+      'Courier New', monospace;
+    background: #fafafa;
+    border-radius: 5px;
+  }
+
+  .infoItem {
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    flex-direction: column;
+    width: 100%;
+  }
+}
