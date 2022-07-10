@@ -1,6 +1,6 @@
 {
   "name": "generator-ian-templates",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "files": [
     "generators"
@@ -14,5 +14,10 @@
     "yeoman-generator": "^4.0.0",
     "yosay": "^2.0.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:huaxiabuluo/generator-ian-templates.git"
+  },
+  "homepage": "https://github.com/huaxiabuluo/generator-ian-templates",
   "license": "MIT"
 }
