@@ -66,7 +66,7 @@ const tplPathMap = {
       },
     ],
     ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
-    ruleFiles: ['babelrc', 'gitignore', 'eslintrc', 'prettierrc', 'stylelintrc.json'],
+    ruleFiles: ['gitignore', 'eslintrc', 'prettierrc', 'stylelintrc.json'],
   },
   'npm-package': {
     path: 'npm-package',
