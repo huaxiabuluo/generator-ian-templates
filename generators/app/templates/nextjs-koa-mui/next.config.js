@@ -1,21 +1,13 @@
-const path = require('path');
-const nextTM = require('next-transpile-modules');
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-/**
- * es modules which should be transpiled to commonjs
- * @example
- * ```js
- * const withTM = nextTM(['react-github-btn']);
- * ```
- */
-const withTM = nextTM([]);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-/** @type {import('next').NextConfig} */
-module.exports = withTM({
-  webpack5: true,
+export default {
   reactStrictMode: true,
   swcMinify: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'components'), path.join(__dirname, 'styles'), path.join(__dirname, 'src')],
   },
-});
+}
