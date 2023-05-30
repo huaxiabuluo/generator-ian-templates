@@ -2,17 +2,17 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import autoprefixer from 'autoprefixer';
 import postCssPresetEnv from 'postcss-preset-env';
-import legacy from '@vitejs/plugin-legacy';
+// import legacy from '@vitejs/plugin-legacy';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    legacy({
-      targets: ['chrome >= 87', 'safari >= 14', 'firefox >= 78'],
-      polyfills: ['es.promise.finally', 'es/map', 'es/set'],
-      modernPolyfills: ['es.promise.finally'],
-    }),
+    // legacy({
+    //   targets: ['chrome >= 87', 'safari >= 14', 'firefox >= 78'],
+    //   polyfills: ['es.promise.finally', 'es/map', 'es/set'],
+    //   modernPolyfills: ['es.promise.finally'],
+    // }),
   ],
   server: {
     port: 3000,
