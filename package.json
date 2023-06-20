@@ -2,6 +2,7 @@
   "name": "generator-ian-templates",
   "version": "1.4.0",
   "description": "",
+  "type": "module",
   "files": [
     "generators"
   ],
