@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: master
+          path: source/generator-ian-templates
+          fetch-depth: 2
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v3
         with:
@@ -15,13 +19,15 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       # - run: npm ci
       - run: |
-          if node ../scripts/publish-check.js; then
+          if node ./source/generator-ian-templates/scripts/publish-check.js; then
             echo "Version not changed, skipping publish."
           elif [ $? -eq 1 ]; then
             echo "Version changed, publishing to npm..."
+            cd ./source/generator-ian-templates
             npm publish
           else
             echo "Version changed, publishing to npm with beta tag..."
+            cd ./source/generator-ian-templates
             npm publish --tag beta
           fi
         env:

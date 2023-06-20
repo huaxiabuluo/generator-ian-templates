@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 // const iii = execSync(`git diff HEAD^ HEAD -- package.json | grep '"version":'`, { encoding: 'utf-8' });
 const versionChanged = !!+execSync(
   `git diff -U0 HEAD^ HEAD -- package.json | grep '"version":' > /dev/null && echo 1 || echo 0`,
-  { encoding: 'utf-8' }
+  { encoding: 'utf-8', cwd: path.resolve(__dirname, '..') }
 );
 
 if (!versionChanged) {
