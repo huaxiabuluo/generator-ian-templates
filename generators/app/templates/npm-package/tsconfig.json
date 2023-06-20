@@ -2,7 +2,7 @@
   "compilerOptions": {
     "sourceMap": true,
     "target": "esnext",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "module": "esnext",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
@@ -15,9 +15,9 @@
     "allowJs": true,
     "rootDir": "src",
     "outDir": "dist",
-    "lib": ["dom", "es6", "es7"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "esModuleInterop": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts","src/**/*.tsx"],
   "exclude": ["node_modules", "dist", "es", "lib"]
 }

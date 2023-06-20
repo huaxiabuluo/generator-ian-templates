@@ -43,6 +43,11 @@ thumbs.db
 .idea
 .vscode
 .gitignore
+.babelrc*
+.eslint*
+.prettierrc*
+.husky
+rollup.config.js
 src/
 node_modules/
 jscoverage_lib/
