@@ -19,7 +19,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       # - run: npm ci
       - run: |
-          if node ./source/generator-ian-templates/scripts/publish-check.js; then
+          if node ./source/generator-ian-templates/scripts/publish-check.mjs; then
             echo "Version not changed, skipping publish."
           elif [ $? -eq 1 ]; then
             echo "Version changed, publishing to npm..."
