@@ -1,0 +1,28 @@
+@import 'antd/dist/reset.css';
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: theme('borderColor.DEFAULT', currentColor);
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bgline {
+    @apply w-full h-0 text-bglinecolor;
+    border-block-start: 1px solid transparent;
+    border-block-start-color: currentColor;
+    border-block-end: none;
+  }
+}
