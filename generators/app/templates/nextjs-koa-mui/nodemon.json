@@ -8,6 +8,6 @@
     ".next",
     "dist"
   ],
-  "exec": "ts-node --project tsconfig.server.json --experimental-specifier-resolution=node server/server.ts",
-  "ext": "js json ts"
+  "exec": "node --loader ts-node/esm server/server.ts",
+  "ext": "js,json,ts"
 }

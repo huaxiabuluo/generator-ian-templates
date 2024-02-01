@@ -1,7 +1,6 @@
 import Link from '@mui/material/Link';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import Typography from '@mui/material/Typography';
-import styles from './index.module.scss';
 
 function LightBulbIcon(props: SvgIconProps) {
   return (
@@ -13,7 +12,7 @@ function LightBulbIcon(props: SvgIconProps) {
 
 export default function ProTip() {
   return (
-    <Typography sx={{ mt: 6, mb: 3 }} color="text.secondary" className={styles.proTip}>
+    <Typography sx={{ mt: 6, mb: 3 }} color="text.secondary" fontSize={16}>
       <LightBulbIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
       Pro tip: See more <Link href="https://mui.com/getting-started/templates/">templates</Link> on the MUI
       documentation.

@@ -1,4 +1,4 @@
-import { createContext, FC, useContext } from 'react';
+import { createContext, PropsWithChildren, useContext } from 'react';
 import { makeAutoObservable } from 'mobx';
 import { enableStaticRendering } from 'mobx-react-lite';
 
@@ -28,7 +28,7 @@ export const rootStoreRef = {
 
 export const storeContext = createContext(undefined as unknown as RootStore);
 
-export const StoreProvider: FC<{ initialData?: RootStore }> = ({ children, initialData }) => {
+export const StoreProvider = ({ children, initialData }: PropsWithChildren<{ initialData?: RootStore }>) => {
   const store = initializeStore(initialData);
   return <storeContext.Provider value={store}>{children}</storeContext.Provider>;
 };
