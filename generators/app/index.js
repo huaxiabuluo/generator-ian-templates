@@ -198,7 +198,29 @@ module.exports = class extends Generator {
       },
     ]);
     const otherAttrs = await this.prompt(tplPathMap[templateName].prompt);
-    this.config = { templateName, ...otherAttrs };
+    const initPrompt = await this.prompt([
+      {
+        type: 'confirm',
+        name: 'initGit',
+        required: true,
+        message: '是否初始化 git 仓库',
+        default: true,
+      },
+      {
+        type: 'list',
+        name: 'packageManager',
+        required: true,
+        message: '自动安装项目依赖',
+        default: '',
+        choices: [
+          { name: '不安装', value: '' },
+          { name: 'npm', value: 'npm' },
+          { name: 'yarn', value: 'yarn' },
+          { name: 'pnpm', value: 'pnpm' },
+        ],
+      },
+    ]);
+    this.config = { templateName, ...otherAttrs, ...initPrompt };
   }
 
   writing() {
@@ -246,19 +268,24 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this._initGit();
+    const { applicationName, initGit, packageManager } = this.config;
+    if (initGit) {
+      this._initGit();
+    }
 
-    const { applicationName } = this.config;
-
-    this.log(chalk.cyan('\nInstalling dependencies with npm...\n'));
-
-    this.npmInstall(null, {}, { cwd: applicationName });
+    if (packageManager) {
+      this.log(chalk.cyan(`\nInstalling dependencies with ${packageManager}...\n`));
+      // npm|yarn|pnpm install
+      this.spawnCommandSync(packageManager, ['install'], {
+        cwd: this.destinationPath(applicationName),
+      });
+    }
   }
 
   end() {
     const { applicationName } = this.config;
-
-    this.log(chalk.cyan('\nSetup complete. Happy coding!\n'));
-    this.log(chalk.yellow(`Tip: Build instructions can be found in the ${applicationName}/README.md file.\n`));
+    this.log(chalk.cyan('\nSetup complete. Happy coding!'));
+    this.log(chalk.yellow(`\nTips: Build instructions can be found in the ${applicationName}/README.md file.`));
+    this.log(chalk.greenBright(`\n\ncd ${applicationName}\n\n`));
   }
 };

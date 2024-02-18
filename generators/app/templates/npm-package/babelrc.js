@@ -1,27 +1,19 @@
-const { BABEL_ENV } = process.env;
-const cjs = BABEL_ENV === 'commonjs';
-const runtimeVersion = require(`./package.json`).dependencies['@babel/runtime'] || '^7.10.4';
-const loose = true;
+const { BABEL_MODULE } = process.env;
+const cjs = BABEL_MODULE === 'commonjs';
 
-module.exports = {
+export default {
   presets: [
     [
       '@babel/preset-env',
       {
-        modules: false,
-        useBuiltIns: 'entry',
-        corejs: {
-          version: 3,
-          proposals: true,
-        },
+        modules: cjs ? BABEL_MODULE : false,
+        useBuiltIns: 'usage',
+        corejs: { version: '3.35', proposals: true },
+        targets: 'chrome >= 90, safari >= 15, firefox >= 90',
       },
     ],
     ['@babel/preset-react', { runtime: 'automatic' }],
-    ['@babel/preset-typescript', { isTSX: true, allExtensions: true }],
+    '@babel/preset-typescript',
   ],
-  plugins: [
-    ['@babel/proposal-object-rest-spread', { loose }],
-    cjs && ['@babel/transform-modules-commonjs', { loose }],
-    ['@babel/plugin-transform-runtime', { useESModules: !cjs, version: runtimeVersion }],
-  ].filter(Boolean),
+  plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-transform-runtime'],
 };
