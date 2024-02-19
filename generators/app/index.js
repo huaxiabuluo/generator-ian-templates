@@ -37,7 +37,7 @@ const tplPathMap = {
     ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
     ruleFiles: ['babelrc', 'gitignore', 'eslintrc', 'eslintignore', 'prettierrc'],
   },
-  'Nextjs + Koa + Material-UI + TypeScript': {
+  'Nextjs + Koa + MUI + TypeScript': {
     path: 'nextjs-koa-mui',
     prompt: [
       {
@@ -67,44 +67,6 @@ const tplPathMap = {
     ],
     ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
     ruleFiles: ['gitignore', 'eslintrc', 'prettierrc', 'stylelintrc.json'],
-  },
-  'npm-package': {
-    path: 'npm-package',
-    prompt: [
-      {
-        type: 'input',
-        name: 'packageName',
-        required: true,
-        message: 'npm包名称',
-        validate: (input) => !!input.trim(),
-      },
-      {
-        type: 'input',
-        name: 'applicationName',
-        required: true,
-        message: '项目名称',
-        validate: (input) => !!input.trim(),
-      },
-      {
-        type: 'input',
-        name: 'applicationDesc',
-        message: '项目描述',
-      },
-      {
-        type: 'input',
-        name: 'authorName',
-        message: '开发者名称',
-        default: gitUser.name,
-      },
-      {
-        type: 'input',
-        name: 'authorEmail',
-        message: '开发者邮件',
-        default: gitUser.email,
-      },
-    ],
-    ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
-    ruleFiles: ['babelrc.js', 'gitignore', 'eslintrc', 'eslintignore', 'prettierrc', 'npmignore'],
   },
   'Vite + React + TypeScript': {
     path: 'vite-react-ts',
@@ -167,6 +129,75 @@ const tplPathMap = {
     ],
     ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
     ruleFiles: ['gitignore', 'eslintrc', 'eslintignore', 'prettierrc'],
+  },
+  'Vite + MUI + TypeScript': {
+    path: 'vite-mui-ts',
+    prompt: [
+      {
+        type: 'input',
+        name: 'applicationName',
+        required: true,
+        message: '项目名称',
+        validate: (input) => !!input.trim(),
+      },
+      {
+        type: 'input',
+        name: 'applicationDesc',
+        message: '项目描述',
+      },
+      {
+        type: 'input',
+        name: 'authorName',
+        message: '开发者名称',
+        default: gitUser.name,
+      },
+      {
+        type: 'input',
+        name: 'authorEmail',
+        message: '开发者邮件',
+        default: gitUser.email,
+      },
+    ],
+    ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
+    ruleFiles: ['gitignore', 'eslintrc', 'eslintignore', 'prettierrc'],
+  },
+  'NPM Package': {
+    path: 'npm-package',
+    prompt: [
+      {
+        type: 'input',
+        name: 'packageName',
+        required: true,
+        message: 'npm包名称',
+        validate: (input) => !!input.trim(),
+      },
+      {
+        type: 'input',
+        name: 'applicationName',
+        required: true,
+        message: '项目名称',
+        validate: (input) => !!input.trim(),
+      },
+      {
+        type: 'input',
+        name: 'applicationDesc',
+        message: '项目描述',
+      },
+      {
+        type: 'input',
+        name: 'authorName',
+        message: '开发者名称',
+        default: gitUser.name,
+      },
+      {
+        type: 'input',
+        name: 'authorEmail',
+        message: '开发者邮件',
+        default: gitUser.email,
+      },
+    ],
+    ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
+    ruleFiles: ['babelrc.js', 'gitignore', 'eslintrc', 'eslintignore', 'prettierrc', 'npmignore'],
   },
 };
 
