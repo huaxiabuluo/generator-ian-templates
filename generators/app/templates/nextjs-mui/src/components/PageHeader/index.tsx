@@ -10,15 +10,15 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import LanguageIcon from '@mui/icons-material/Language';
 import { PageRoute } from '@/utils/constant';
+import { getAppAbsPath } from '@/actions/path';
 import { AbsoluteLink, ActionContentContainer, AppBar, AppToolbar, MenuTab, MenuTabs } from './styles';
-import { test } from './action';
 
 export default function PageHeader() {
   const [langAnchorEle, setLangAnchorEle] = useState<null | HTMLElement>(null);
   const changeLang = useCallback(async (lang: string) => {
     setLangAnchorEle(null);
-    const num = await test();
-    console.log('=====num', num);
+    const res = await getAppAbsPath(3, 7);
+    console.log('=====res', res);
   }, []);
   const headerRoutes = useMemo(() => Object.values(PageRoute).filter((route) => route !== PageRoute.Root), []);
   const pathname = usePathname();
