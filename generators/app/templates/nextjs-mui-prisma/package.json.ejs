@@ -1,0 +1,47 @@
+{
+  "name": "<%= applicationName %>",
+  "version": "1.0.0",
+  "description": "<%= applicationDesc %>",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prisma:init": "prisma generate && prisma migrate dev --name init",
+    "prepare": "husky",
+    "postinstall": "npm run prisma:init"
+  },
+  "author": {
+    "name": "<%= authorName %>",
+    "email": "<%= authorEmail %>"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^6.0.2",
+    "@mui/material": "^6.0.2",
+    "@mui/material-nextjs": "^6.0.2",
+    "@prisma/client": "5.19.1",
+    "await-to-js": "^3.0.0",
+    "next": "^14.2.3",
+    "prisma": "^5.19.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "eslint": "^9.9.1",
+    "eslint-config-next": "^14.2.3",
+    "husky": "^9.0.11",
+    "tsx": "^4.19.0",
+    "typescript": "^5.4.5"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts",
+    "schema": "./prisma/schema.prisma"
+  }
+}
