@@ -6,7 +6,7 @@ const rootStoreRef = { current: rootStore };
 
 // debugging, runing in console, such as:
 // window.__ROOT_STORE__.common.setPageLoading(true)
-// @ts-ignore
+// @ts-expect-error ignore type error
 window.__ROOT_STORE__ = rootStore;
 
 export const getRootStore = () => rootStoreRef.current;

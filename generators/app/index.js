@@ -159,7 +159,7 @@ const tplPathMap = {
       },
     ],
     ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
-    ruleFiles: ['gitignore', 'eslintrc', 'eslintignore', 'prettierrc'],
+    ruleFiles: ['gitignore', 'prettierrc'],
   },
   'Vite + React + Tailwind': {
     path: 'vite-react-tailwind',
