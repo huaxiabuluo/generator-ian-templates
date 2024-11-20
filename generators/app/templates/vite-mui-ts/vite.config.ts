@@ -7,6 +7,21 @@ import postCssPresetEnv from 'postcss-preset-env';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    target: 'esnext',
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (/node_modules\/(react|react-dom|react-router-dom|mobx|mobx-react-lite)\//.test(id)) {
+            return 'common';
+          } else if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
+      },
+    },
+  },
   plugins: [
     react({
       plugins: [['@swc/plugin-emotion', {}]],
