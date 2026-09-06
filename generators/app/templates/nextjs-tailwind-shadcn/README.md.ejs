@@ -1,0 +1,62 @@
+# <%= applicationName %>
+
+<%= applicationDesc %>
+
+基于 [Next.js](https://nextjs.org)、[Tailwind CSS](https://tailwindcss.com) 与 [shadcn/ui](https://ui.shadcn.com) 的前端模板，使用 pnpm 管理依赖，内置 ESLint 与 Prettier。
+
+## 环境要求
+
+- Node.js >= 20
+- pnpm >= 10
+
+## 快速开始
+
+```bash
+pnpm install
+pnpm dev
+```
+
+用浏览器打开 [http://localhost:3000](http://localhost:3000) 即可查看页面。
+
+在页面上按 <kbd>d</kbd> 键可以切换暗色模式。
+
+## 常用命令
+
+| 命令               | 说明                |
+| ------------------ | ------------------- |
+| `pnpm dev`         | 启动开发服务器      |
+| `pnpm build`       | 生产构建            |
+| `pnpm start`       | 启动生产服务器      |
+| `pnpm lint`        | ESLint 检查         |
+| `pnpm format`      | Prettier 格式化代码 |
+| `pnpm typecheck`   | TypeScript 类型检查 |
+
+## 添加 shadcn/ui 组件
+
+在 [ui.shadcn.com/docs/components](https://ui.shadcn.com/docs/components) 浏览组件列表，然后执行：
+
+```bash
+pnpm dlx shadcn@latest add <component>
+```
+
+例如执行 `pnpm dlx shadcn@latest add dropdown-menu`，组件会被添加到 `src/components/ui/` 目录。
+
+## 目录结构
+
+```
+├── components.json          # shadcn/ui 配置
+├── src/
+│   ├── app/                 # App Router 页面与布局
+│   │   ├── globals.css      # Tailwind CSS 与主题变量
+│   │   ├── layout.tsx       # 根布局（含主题切换）
+│   │   └── page.tsx         # 首页
+│   ├── components/
+│   │   ├── theme-provider.tsx
+│   │   └── ui/              # shadcn/ui 组件
+│   ├── hooks/               # 自定义 React Hooks
+│   └── lib/
+│       └── utils.ts         # cn() 工具函数
+├── eslint.config.mjs        # ESLint 配置
+├── next.config.ts           # Next.js 配置
+└── tsconfig.json            # TypeScript 配置（含 @/* 别名）
+```
