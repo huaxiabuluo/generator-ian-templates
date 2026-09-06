@@ -29,4 +29,4 @@ npx -p yo -p generator-ian-templates -c 'yo ian-templates'
 
 ## 开发
 
-模板位于 `generators/app/templates/` 目录，生成器注册表在 `generators/app/index.js`。修改模板后可通过生成器本地跑一遍进行验证。
+模板位于 `generators/app/templates/` 目录，生成器注册表在 `generators/app/index.mjs`。修改模板后可通过生成器本地跑一遍进行验证。

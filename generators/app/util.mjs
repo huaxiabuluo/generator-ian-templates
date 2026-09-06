@@ -1,14 +1,14 @@
-const path = require('path');
-const { existsSync, readFileSync } = require('fs');
-const { homedir } = require('os');
-const ini = require('ini');
+import { existsSync, readFileSync } from 'node:fs';
+import { homedir } from 'node:os';
+import path from 'node:path';
+import ini from 'ini';
 
 const getGlobalConfigPath = () => {
   const mainConfigPath = path.resolve(homedir(), '.gitconfig');
   return existsSync(mainConfigPath) ? mainConfigPath : null;
 };
 
-exports.getGlobalGitConfig = () => {
+export const getGlobalGitConfig = () => {
   const gcPath = getGlobalConfigPath();
   
   return gcPath ? ini.parse(readFileSync(gcPath, { encoding: 'utf8' })) : {};
