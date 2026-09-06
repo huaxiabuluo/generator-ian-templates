@@ -9,7 +9,7 @@
     "yeoman-generator"
   ],
   "engines": {
-    "node": "^20.17.0 || >=22.9.0"
+    "node": ">=24.0.0"
   },
   "dependencies": {
     "chalk": "^4.1.2",
