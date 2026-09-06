@@ -1,0 +1,8 @@
+node_modules/
+lib/
+es/
+dist/
+types/
+coverage/
+pnpm-lock.yaml
+.pnpm-store/

@@ -5,195 +5,81 @@ const { getGlobalGitConfig } = require('./util');
 
 const gitUser = getGlobalGitConfig().user || {};
 
+const ejsTplFiles = ['package.json.ejs', 'README.md.ejs'];
+
+const applicationPrompts = [
+  {
+    type: 'input',
+    name: 'applicationName',
+    required: true,
+    message: '项目名称',
+    validate: (input) => !!input.trim(),
+  },
+  {
+    type: 'input',
+    name: 'applicationDesc',
+    message: '项目描述',
+  },
+  {
+    type: 'input',
+    name: 'authorName',
+    message: '开发者名称',
+    default: gitUser.name,
+  },
+  {
+    type: 'input',
+    name: 'authorEmail',
+    message: '开发者邮件',
+    default: gitUser.email,
+  },
+];
+
 const tplPathMap = {
-  'Nextjs + MUI': {
+  'Nextjs + MUI + TypeScript': {
     path: 'nextjs-mui',
-    prompt: [
-      {
-        type: 'input',
-        name: 'applicationName',
-        required: true,
-        message: '项目名称',
-        validate: (input) => !!input.trim(),
-      },
-      {
-        type: 'input',
-        name: 'applicationDesc',
-        message: '项目描述',
-      },
-      {
-        type: 'input',
-        name: 'authorName',
-        message: '开发者名称',
-        default: gitUser.name,
-      },
-      {
-        type: 'input',
-        name: 'authorEmail',
-        message: '开发者邮件',
-        default: gitUser.email,
-      },
-    ],
-    ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
-    ruleFiles: ['gitignore', 'eslintrc', 'prettierrc'],
+    desc: 'Next.js App Router + MUI + TypeScript 前端项目',
+    prompt: applicationPrompts,
+    ejsTplFiles,
+    ruleFiles: ['gitignore', 'prettierrc', 'prettierignore'],
   },
   'Nextjs + MUI + Prisma': {
     path: 'nextjs-mui-prisma',
-    prompt: [
-      {
-        type: 'input',
-        name: 'applicationName',
-        required: true,
-        message: '项目名称',
-        validate: (input) => !!input.trim(),
-      },
-      {
-        type: 'input',
-        name: 'applicationDesc',
-        message: '项目描述',
-      },
-      {
-        type: 'input',
-        name: 'authorName',
-        message: '开发者名称',
-        default: gitUser.name,
-      },
-      {
-        type: 'input',
-        name: 'authorEmail',
-        message: '开发者邮件',
-        default: gitUser.email,
-      },
-    ],
-    ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
-    ruleFiles: ['gitignore', 'eslintrc', 'prettierrc', 'env'],
+    desc: 'Next.js + MUI + Prisma 7（SQLite）全栈项目，含数据模型与种子数据',
+    prompt: applicationPrompts,
+    ejsTplFiles,
+    ruleFiles: ['gitignore', 'prettierrc', 'prettierignore', 'env'],
   },
   'Nextjs + Tailwind + shadcn': {
     path: 'nextjs-tailwind-shadcn',
-    prompt: [
-      {
-        type: 'input',
-        name: 'applicationName',
-        required: true,
-        message: '项目名称',
-        validate: (input) => !!input.trim(),
-      },
-      {
-        type: 'input',
-        name: 'applicationDesc',
-        message: '项目描述',
-      },
-      {
-        type: 'input',
-        name: 'authorName',
-        message: '开发者名称',
-        default: gitUser.name,
-      },
-      {
-        type: 'input',
-        name: 'authorEmail',
-        message: '开发者邮件',
-        default: gitUser.email,
-      },
-    ],
-    ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
+    desc: 'Next.js App Router + Tailwind CSS v4 + shadcn/ui 前端项目',
+    prompt: applicationPrompts,
+    ejsTplFiles,
     ruleFiles: ['gitignore', 'prettierrc', 'prettierignore'],
   },
-  'Vite + React + TypeScript': {
+  'Vite + React + TypeScript + Antd': {
     path: 'vite-react-ts',
-    prompt: [
-      {
-        type: 'input',
-        name: 'applicationName',
-        required: true,
-        message: '项目名称',
-        validate: (input) => !!input.trim(),
-      },
-      {
-        type: 'input',
-        name: 'applicationDesc',
-        message: '项目描述',
-      },
-      {
-        type: 'input',
-        name: 'authorName',
-        message: '开发者名称',
-        default: gitUser.name,
-      },
-      {
-        type: 'input',
-        name: 'authorEmail',
-        message: '开发者邮件',
-        default: gitUser.email,
-      },
-    ],
-    ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
-    ruleFiles: ['gitignore', 'prettierrc'],
+    desc: 'Vite + React 19 + Ant Design + MobX + Less 前端项目',
+    prompt: applicationPrompts,
+    ejsTplFiles,
+    ruleFiles: ['gitignore', 'prettierrc', 'prettierignore'],
   },
-  'Vite + React + Tailwind': {
+  'Vite + React + Tailwind + TypeScript': {
     path: 'vite-react-tailwind',
-    prompt: [
-      {
-        type: 'input',
-        name: 'applicationName',
-        required: true,
-        message: '项目名称',
-        validate: (input) => !!input.trim(),
-      },
-      {
-        type: 'input',
-        name: 'applicationDesc',
-        message: '项目描述',
-      },
-      {
-        type: 'input',
-        name: 'authorName',
-        message: '开发者名称',
-        default: gitUser.name,
-      },
-      {
-        type: 'input',
-        name: 'authorEmail',
-        message: '开发者邮件',
-        default: gitUser.email,
-      },
-    ],
-    ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
-    ruleFiles: ['gitignore', 'eslintrc', 'eslintignore', 'prettierrc'],
+    desc: 'Vite + React 19 + Tailwind CSS v4 + Ant Design 前端项目',
+    prompt: applicationPrompts,
+    ejsTplFiles,
+    ruleFiles: ['gitignore', 'prettierrc', 'prettierignore'],
   },
   'Vite + MUI + TypeScript': {
     path: 'vite-mui-ts',
-    prompt: [
-      {
-        type: 'input',
-        name: 'applicationName',
-        required: true,
-        message: '项目名称',
-        validate: (input) => !!input.trim(),
-      },
-      {
-        type: 'input',
-        name: 'applicationDesc',
-        message: '项目描述',
-      },
-      {
-        type: 'input',
-        name: 'authorName',
-        message: '开发者名称',
-        default: gitUser.name,
-      },
-      {
-        type: 'input',
-        name: 'authorEmail',
-        message: '开发者邮件',
-        default: gitUser.email,
-      },
-    ],
-    ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
-    ruleFiles: ['gitignore', 'eslintrc', 'eslintignore', 'prettierrc'],
+    desc: 'Vite + React 19 + MUI + MobX + i18n 前端项目',
+    prompt: applicationPrompts,
+    ejsTplFiles,
+    ruleFiles: ['gitignore', 'prettierrc', 'prettierignore'],
   },
-  'NPM Package': {
+  'React 组件库（NPM Package）': {
     path: 'npm-package',
+    desc: 'Babel + Rollup 构建 React 组件库，输出 CommonJS / ESM / UMD',
     prompt: [
       {
         type: 'input',
@@ -202,33 +88,10 @@ const tplPathMap = {
         message: 'npm包名称',
         validate: (input) => !!input.trim(),
       },
-      {
-        type: 'input',
-        name: 'applicationName',
-        required: true,
-        message: '项目名称',
-        validate: (input) => !!input.trim(),
-      },
-      {
-        type: 'input',
-        name: 'applicationDesc',
-        message: '项目描述',
-      },
-      {
-        type: 'input',
-        name: 'authorName',
-        message: '开发者名称',
-        default: gitUser.name,
-      },
-      {
-        type: 'input',
-        name: 'authorEmail',
-        message: '开发者邮件',
-        default: gitUser.email,
-      },
+      ...applicationPrompts.slice(1),
     ],
-    ejsTplFiles: ['package.json.ejs', 'README.md.ejs'],
-    ruleFiles: ['babelrc.js', 'gitignore', 'eslintrc', 'eslintignore', 'prettierrc', 'npmignore'],
+    ejsTplFiles,
+    ruleFiles: ['babelrc.js', 'gitignore', 'npmignore', 'prettierrc', 'prettierignore'],
   },
 };
 
@@ -256,7 +119,10 @@ module.exports = class extends Generator {
         name: 'templateName',
         required: true,
         message: '请选择项目模板',
-        choices: Object.keys(tplPathMap),
+        choices: Object.entries(tplPathMap).map(([name, tpl]) => ({
+          name: `${name} - ${tpl.desc}`,
+          value: name,
+        })),
       },
     ]);
     const otherAttrs = await this.prompt(tplPathMap[templateName].prompt);
@@ -272,12 +138,10 @@ module.exports = class extends Generator {
         type: 'list',
         name: 'packageManager',
         required: true,
-        message: '自动安装项目依赖',
+        message: '自动安装项目依赖（模板统一使用 pnpm）',
         default: '',
         choices: [
           { name: '不安装', value: '' },
-          { name: 'npm', value: 'npm' },
-          { name: 'yarn', value: 'yarn' },
           { name: 'pnpm', value: 'pnpm' },
         ],
       },
@@ -308,6 +172,7 @@ module.exports = class extends Generator {
           '**/package.json',
           '**/package-lock.json',
           '**/yarn.lock',
+          '**/pnpm-lock.yaml',
           '**/README.md',
           '**/.npmignore',
           '**/.DS_Store',
@@ -337,7 +202,7 @@ module.exports = class extends Generator {
 
     if (packageManager) {
       this.log(chalk.cyan(`\nInstalling dependencies with ${packageManager}...\n`));
-      // npm|yarn|pnpm install
+      // pnpm install
       this.spawnCommandSync(packageManager, ['install'], {
         cwd: this.destinationPath(applicationName),
       });

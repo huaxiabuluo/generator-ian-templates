@@ -1,4 +1,4 @@
 export enum PageRoute {
-  Root = '',
-  About = 'about',
+  Root = "",
+  About = "about",
 }

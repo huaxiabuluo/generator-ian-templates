@@ -1,13 +1,13 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
-import autoprefixer from 'autoprefixer';
-import postCssPresetEnv from 'postcss-preset-env';
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react-swc"
+import tailwindcss from "@tailwindcss/vite"
 // import legacy from '@vitejs/plugin-legacy';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    tailwindcss(),
     // legacy({
     //   targets: ['chrome >= 87', 'safari >= 14', 'firefox >= 78'],
     //   polyfills: ['es.promise.finally', 'es/map', 'es/set'],
@@ -35,8 +35,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': '/src',
-      '@images': '/src/assets/images',
+      "@": "/src",
+      "@images": "/src/assets/images",
     },
   },
-});
+})

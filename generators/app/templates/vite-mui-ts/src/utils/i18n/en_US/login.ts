@@ -1,5 +1,5 @@
 const login = {
-  loginSuccess: 'Login Success',
-};
+  loginSuccess: "Login Success",
+}
 
-export default login;
+export default login

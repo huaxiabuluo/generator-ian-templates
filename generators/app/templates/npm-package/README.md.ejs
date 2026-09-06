@@ -1,7 +1,52 @@
 # <%= applicationName %>
 
-# Start
+<%= applicationDesc %>
+
+基于 Babel 与 Rollup 的 React 组件库（npm 包）模板，一次构建输出 CommonJS（`lib/`）、ESM（`es/`）与 UMD（`dist/`）三种产物及类型声明（`types/`），使用 pnpm 管理依赖，内置 ESLint 与 Prettier。
+
+## 环境要求
+
+- Node.js >= 20
+- pnpm >= 10
+
+## 快速开始
+
+```bash
+pnpm install
+pnpm build
 ```
-npm install
-npm run build
+
+## 常用命令
+
+| 命令                   | 说明                                   |
+| ---------------------- | -------------------------------------- |
+| `pnpm build`           | 完整构建（CJS + ESM + 类型声明）       |
+| `pnpm build:umd`       | 仅构建 UMD 产物（Rollup，含压缩）      |
+| `pnpm build:commonjs`  | 仅构建 CommonJS 产物（Babel）          |
+| `pnpm build:es`        | 仅构建 ESM 产物（Babel）               |
+| `pnpm types`           | 仅生成类型声明                         |
+| `pnpm clean`           | 清理构建产物                           |
+| `pnpm lint`            | ESLint 检查                            |
+| `pnpm format`          | Prettier 格式化代码                    |
+| `pnpm typecheck`       | TypeScript 类型检查                    |
+
+## 发布
+
+`prepublishOnly` 钩子会在发布前自动执行清理与完整构建。发布前请确认 `package.json` 中的 `name`、`version`、`repository` 等字段。
+
+```bash
+pnpm publish
+```
+
+## 目录结构
+
+```
+├── src/
+│   ├── index.ts            # 包入口（导出公共 API）
+│   ├── For.tsx             # For 组件示例
+│   └── utils.tsx           # 工具函数
+├── babelrc.js              # Babel 配置（CJS / ESM 差异化编译）
+├── rollup.config.js        # Rollup 配置（UMD 产物）
+├── eslint.config.mjs       # ESLint 配置
+└── tsconfig.json           # TypeScript 配置（类型声明输出到 types/）
 ```

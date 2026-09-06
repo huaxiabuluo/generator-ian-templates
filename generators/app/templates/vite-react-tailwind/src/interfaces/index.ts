@@ -1,3 +1,3 @@
 export enum RoutePath {
-  Mine = 'mine',
+  Mine = "mine",
 }

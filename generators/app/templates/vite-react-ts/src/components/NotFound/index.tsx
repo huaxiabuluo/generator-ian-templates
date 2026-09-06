@@ -1,6 +1,5 @@
-import React from 'react';
-import { Row, Col, Button } from 'antd';
-import styles from './index.module.less';
+import { Row, Col, Button } from "antd"
+import styles from "./index.module.less"
 
 export default function NotFound() {
   return (
@@ -20,5 +19,5 @@ export default function NotFound() {
         </div>
       </Col>
     </Row>
-  );
+  )
 }

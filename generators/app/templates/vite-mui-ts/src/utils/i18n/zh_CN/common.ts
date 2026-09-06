@@ -1,6 +1,6 @@
 const conmmon = {
-  success: '成功',
-  error: '错误',
-};
+  success: "成功",
+  error: "错误",
+}
 
-export default conmmon;
+export default conmmon

@@ -1,6 +1,6 @@
 const conmmon = {
-  success: 'Success',
-  error: 'Error',
-};
+  success: "Success",
+  error: "Error",
+}
 
-export default conmmon;
+export default conmmon

@@ -1,19 +1,19 @@
-import { action, makeObservable, observable } from 'mobx';
-import { type RootStore } from '.';
+import { action, makeObservable, observableRef } from "mobx"
+import { type RootStore } from "."
 
 export class CommonStore {
-  rootStore?: RootStore;
-  loading = false;
+  rootStore?: RootStore
+  loading = false
 
   constructor(rootStore?: RootStore) {
     makeObservable(this, {
-      rootStore: observable.ref,
+      rootStore: observableRef,
       setLoading: action,
-    });
-    this.rootStore = rootStore;
+    })
+    this.rootStore = rootStore
   }
 
   setLoading = (loading: boolean) => {
-    this.loading = loading;
-  };
+    this.loading = loading
+  }
 }

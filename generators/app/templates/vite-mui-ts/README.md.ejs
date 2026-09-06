@@ -1,7 +1,55 @@
 # <%= applicationName %>
 
-# Start
+<%= applicationDesc %>
+
+基于 [Vite](https://vite.dev)、React 19 与 [MUI](https://mui.com) 的 TypeScript 前端模板，内置 MobX、React Router 与 i18n 国际化，使用 pnpm 管理依赖，内置 ESLint 与 Prettier。
+
+## 环境要求
+
+- Node.js >= 20
+- pnpm >= 10
+
+## 快速开始
+
+```bash
+pnpm install
+pnpm dev
 ```
-npm install
-npm start
+
+开发服务器默认运行在 [http://localhost:3000](http://localhost:3000)，启动后会自动打开浏览器，访问 `/login` 查看登录页。
+
+## 常用命令
+
+| 命令               | 说明                          |
+| ------------------ | ----------------------------- |
+| `pnpm dev`         | 启动开发服务器                |
+| `pnpm build`       | 类型检查 + 生产构建           |
+| `pnpm preview`     | 预览生产构建产物              |
+| `pnpm lint`        | ESLint 检查                   |
+| `pnpm format`      | Prettier 格式化代码           |
+| `pnpm typecheck`   | TypeScript 类型检查           |
+
+## 国际化（i18n）
+
+语言资源位于 `src/utils/i18n/`，按 `zh_CN` / `en_US` 目录组织，默认语言为中文。新增文案时在对应语言的资源文件中添加即可。
+
+## 目录结构
+
+```
+├── index.html               # HTML 入口
+├── public/                  # 静态资源
+├── src/
+│   ├── index.tsx            # 应用启动入口
+│   ├── app.tsx              # 根组件（路由）
+│   ├── components/          # 通用组件（页头、布局、路由容器等）
+│   ├── pages/               # 页面组件（Login / Welcome）
+│   ├── services/            # 接口请求
+│   ├── stores/              # MobX 全局状态（含路由状态同步）
+│   ├── utils/
+│   │   ├── i18n/            # i18next 国际化资源
+│   │   └── helper.ts        # 工具函数
+│   └── vite-env.d.ts        # Vite 类型声明
+├── vite.config.ts           # Vite 配置（含 @/*、@public/* 别名）
+├── eslint.config.mjs        # ESLint 配置
+└── tsconfig.json            # TypeScript 配置
 ```

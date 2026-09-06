@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import PageHeader from '@/components/PageHeader';
-import theme from '@/theme';
+import * as React from "react"
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter"
+import { ThemeProvider } from "@mui/material/styles"
+import CssBaseline from "@mui/material/CssBaseline"
+import PageHeader from "@/components/PageHeader"
+import theme from "@/theme"
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
@@ -19,5 +19,5 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         </AppRouterCacheProvider>
       </body>
     </html>
-  );
+  )
 }
