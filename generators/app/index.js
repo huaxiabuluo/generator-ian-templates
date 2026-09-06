@@ -1,4 +1,4 @@
-const Generator = require('yeoman-generator');
+const Generator = require('yeoman-generator').default;
 const chalk = require('chalk');
 const assert = require('assert');
 const { getGlobalGitConfig } = require('./util');
@@ -105,7 +105,7 @@ module.exports = class extends Generator {
   _initGit() {
     try {
       this.spawnCommandSync('git', ['init', '--quiet'], {
-        cwd: this.destinationPath(this.config.applicationName),
+        cwd: this.destinationPath(this.props.applicationName),
       });
     } catch (e) {
       this.log(chalk.red('\nGit repo not initialized!\n'));
@@ -146,11 +146,11 @@ module.exports = class extends Generator {
         ],
       },
     ]);
-    this.config = { templateName, ...otherAttrs, ...initPrompt };
+    this.props = { templateName, ...otherAttrs, ...initPrompt };
   }
 
   writing() {
-    const { applicationName, templateName, applicationDesc, authorName, authorEmail, packageName } = this.config;
+    const { applicationName, templateName, applicationDesc, authorName, authorEmail, packageName } = this.props;
     const { path: tplPath, ejsTplFiles = [], ruleFiles = [] } = tplPathMap[templateName] || {};
 
     assert(tplPath, '还没有对应的模板哦~');
@@ -195,7 +195,7 @@ module.exports = class extends Generator {
   }
 
   install() {
-    const { applicationName, initGit, packageManager } = this.config;
+    const { applicationName, initGit, packageManager } = this.props;
     if (initGit) {
       this._initGit();
     }
@@ -210,7 +210,7 @@ module.exports = class extends Generator {
   }
 
   end() {
-    const { applicationName } = this.config;
+    const { applicationName } = this.props;
     this.log(chalk.cyan('\nSetup complete. Happy coding!'));
     this.log(chalk.yellow(`\nTips: Build instructions can be found in the ${applicationName}/README.md file.`));
     this.log(chalk.greenBright(`\n\ncd ${applicationName}\n\n`));

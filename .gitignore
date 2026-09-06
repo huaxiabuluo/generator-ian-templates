@@ -70,3 +70,6 @@ log
 .node_history
 .svn
 build/
+
+# pnpm lockfile（仓库约定不提交 lockfile）
+pnpm-lock.yaml
