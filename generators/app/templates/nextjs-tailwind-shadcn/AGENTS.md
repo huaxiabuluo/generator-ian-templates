@@ -1,5 +1,3 @@
-# AGENTS.md
-
 ## Git 提交规范
 
 提交信息使用中文 Conventional Commits 风格，标题简要说明主要变更：
