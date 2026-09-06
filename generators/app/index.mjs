@@ -1,7 +1,7 @@
-const Generator = require('yeoman-generator').default;
-const chalk = require('chalk');
-const assert = require('assert');
-const { getGlobalGitConfig } = require('./util');
+import assert from 'node:assert';
+import chalk from 'chalk';
+import Generator from 'yeoman-generator';
+import { getGlobalGitConfig } from './util.mjs';
 
 const gitUser = getGlobalGitConfig().user || {};
 
@@ -88,14 +88,14 @@ const tplPathMap = {
         message: 'npm包名称',
         validate: (input) => !!input.trim(),
       },
-      ...applicationPrompts.slice(1),
+      ...applicationPrompts,
     ],
     ejsTplFiles,
     ruleFiles: ['babelrc.js', 'gitignore', 'npmignore', 'prettierrc', 'prettierignore'],
   },
 };
 
-module.exports = class extends Generator {
+export default class extends Generator {
   _writeFile(templatePath, destinationPath, params) {
     if (!this.fs.exists(destinationPath)) {
       this.fs.copyTpl(templatePath, destinationPath, params);

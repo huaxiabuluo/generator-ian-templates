@@ -7,7 +7,7 @@ types/
 # source & config
 src/
 rollup.config.js
-babel.config.js
+babelrc.js
 .babelrc.*
 .eslint*
 .prettier*
