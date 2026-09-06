@@ -4,3 +4,5 @@ allowBuilds:
   "@prisma/engines": true
   better-sqlite3: true
   esbuild: true
+  # 无需执行构建脚本的原生依赖（eslint 依赖链）
+  unrs-resolver: false
