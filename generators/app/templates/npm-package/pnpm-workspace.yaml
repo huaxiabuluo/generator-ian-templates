@@ -1,0 +1,3 @@
+allowBuilds:
+  # core-js 的安装脚本仅输出赞助信息，无需执行
+  core-js: false

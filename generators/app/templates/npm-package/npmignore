@@ -1,56 +1,28 @@
-# Cortex
-neurons
-cortex_modules
-.cortex
+# build output
+lib/
+es/
+dist/
+types/
 
-# Numerous always-ignore extensions
-*.bak
-*.patch
-*.diff
-*.err
-
-# temp file for git conflict merging
-*.orig
-*.log
-*.rej
-*.swo
-*.swp
-*.zip
-*.vi
-*~
-*.sass-cache
-*.tmp.html
-*.dump
-
-# OS or Editor folders
-.DS_Store
-._*
-.cache
-.project
-.settings
-.tmproj
-*.esproj
-*.sublime-project
-*.sublime-workspace
-nbproject
-thumbs.db
-*.iml
-
-# Folders to ignore
-.hg
-.svn
-.CVS
-.idea
-.vscode
-.gitignore
-.babelrc*
-.eslint*
-.prettierrc*
-.husky
-rollup.config.js
+# source & config
 src/
-node_modules/
-jscoverage_lib/
-yarn.lock
-package-lock.json
+rollup.config.js
+babel.config.js
+.babelrc.*
+.eslint*
+.prettier*
+eslint.config.mjs
 tsconfig.json
+AGENTS.md
+CLAUDE.md
+
+# dependencies & misc
+node_modules/
+coverage/
+.DS_Store
+*.log
+.pnpm-store/
+
+# editor
+.idea/
+.vscode/

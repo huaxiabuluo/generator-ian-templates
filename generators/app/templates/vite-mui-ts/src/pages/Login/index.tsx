@@ -8,7 +8,7 @@ import {
   FooterInfo,
   FooterVersion,
   FooterCopyright,
-} from './styles';
+} from "./styles"
 
 export default function Login() {
   return (
@@ -22,9 +22,11 @@ export default function Login() {
           <FooterInfo>
             <FooterVersion>版本: v3.7</FooterVersion>
           </FooterInfo>
-          <FooterCopyright active>Copyright © 杭州悦数科技有限公司</FooterCopyright>
+          <FooterCopyright active>
+            Copyright © 杭州悦数科技有限公司
+          </FooterCopyright>
         </Footer>
       </Content>
     </LoginContainer>
-  );
+  )
 }

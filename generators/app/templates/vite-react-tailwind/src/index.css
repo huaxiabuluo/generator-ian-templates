@@ -1,28 +1,17 @@
-@import 'antd/dist/reset.css';
+@import "antd/dist/reset.css";
 
-*,
-::before,
-::after {
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: theme('borderColor.DEFAULT', currentColor);
+/* 仅引入 Tailwind v4 的主题与工具类，未引入 preflight，避免与 antd 的样式重置冲突 */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  --color-bglinecolor: rgba(255, 255, 255, 0.3);
 }
 
-::before,
-::after {
-  --tw-content: '';
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer utilities {
-  .bgline {
-    @apply w-full h-0 text-bglinecolor;
-    border-block-start: 1px solid transparent;
-    border-block-start-color: currentColor;
-    border-block-end: none;
-  }
+/* 分隔线工具类，可配合 before:/after: 变体使用 */
+@utility bgline {
+  @apply w-full h-0 text-bglinecolor;
+  border-block-start: 1px solid transparent;
+  border-block-start-color: currentColor;
+  border-block-end: none;
 }

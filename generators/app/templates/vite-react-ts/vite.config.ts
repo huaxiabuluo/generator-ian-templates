@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
-import autoprefixer from 'autoprefixer';
-import postCssPresetEnv from 'postcss-preset-env';
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react-swc"
+import autoprefixer from "autoprefixer"
+import postCssPresetEnv from "postcss-preset-env"
 // import legacy from '@vitejs/plugin-legacy';
 
 // https://vitejs.dev/config/
@@ -35,8 +35,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': '/src',
-      '@assets': '/src/assets',
+      "@": "/src",
+      "@assets": "/src/assets",
     },
   },
   css: {
@@ -46,16 +46,21 @@ export default defineConfig({
       },
     },
     modules: {
-      localsConvention: 'camelCase',
-      generateScopedName: '[name]__[local]__[hash:base64:5]',
+      localsConvention: "camelCase",
+      generateScopedName: "[name]__[local]__[hash:base64:5]",
     },
     postcss: {
       plugins: [
         autoprefixer(),
         postCssPresetEnv({
-          browsers: ['> 1% in CN', 'last 2 versions', 'ios >= 9', 'Android >= 4.4'],
+          browsers: [
+            "> 1% in CN",
+            "last 2 versions",
+            "ios >= 9",
+            "Android >= 4.4",
+          ],
         }),
       ],
     },
   },
-});
+})

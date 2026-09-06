@@ -1,4 +1,4 @@
-import { Row, Col, Button } from 'antd';
+import { Row, Col, Button } from "antd"
 
 export default function NotFound() {
   return (
@@ -14,5 +14,5 @@ export default function NotFound() {
         </Button>
       </Col>
     </Row>
-  );
+  )
 }

@@ -1,15 +1,73 @@
 # <%= applicationName %>
 
-## Start
+<%= applicationDesc %>
+
+基于 [Next.js](https://nextjs.org)、[MUI](https://mui.com) 与 [Prisma](https://www.prisma.io)（SQLite）的全栈模板，使用 pnpm 管理依赖，内置 ESLint 与 Prettier。
+
+## 环境要求
+
+- Node.js >= 20
+- pnpm >= 10
+
+## 快速开始
 
 ```bash
-# suggest to use pnpm
 pnpm install
-pnpm run dev
 
-# or use npm
-npm install
-npm run dev
+# 初始化数据库：生成客户端 + 创建迁移 + 写入种子数据
+pnpm prisma:init
+
+pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+用浏览器打开 [http://localhost:3000](http://localhost:3000) 即可查看页面。
+
+> Prisma 7 默认不加载 `.env`，CLI 相关能力（连接信息、seed 命令）统一在 `prisma.config.ts` 中配置。
+
+## 常用命令
+
+| 命令                  | 说明                            |
+| --------------------- | ------------------------------- |
+| `pnpm dev`            | 启动开发服务器                  |
+| `pnpm build`          | 生产构建                        |
+| `pnpm start`          | 启动生产服务器                  |
+| `pnpm lint`           | ESLint 检查                     |
+| `pnpm format`         | Prettier 格式化代码             |
+| `pnpm typecheck`      | TypeScript 类型检查             |
+| `pnpm prisma:generate` | 重新生成 Prisma Client         |
+| `pnpm prisma:migrate`  | 创建并应用一个新的迁移          |
+| `pnpm prisma:seed`     | 写入种子数据                    |
+| `pnpm prisma:init`     | 首次初始化（generate+migrate+seed） |
+
+## 数据库
+
+- 数据模型定义在 `prisma/schema.prisma`，默认使用 SQLite（`prisma/dev.db`）。
+- 修改模型后执行 `pnpm prisma:migrate` 生成迁移；Prisma 7 中 `migrate dev` 不再自动执行 `generate` 与 seed，可用 `prisma:generate`、`prisma:seed` 单独触发。
+- Prisma Client 生成在 `src/generated/prisma`（已在 ESLint / Prettier / Git 中忽略），通过 `@prisma/adapter-better-sqlite3` 驱动适配器实例化，见 `src/utils/prisma.ts`。
+
+## 目录结构
+
+```
+├── prisma/
+│   ├── migrations/          # 数据库迁移（prisma:migrate 生成）
+│   ├── schema.prisma        # 数据模型
+│   └── seed.ts              # 种子数据
+├── public/                  # 静态资源
+├── src/
+│   ├── actions/             # Server Actions
+│   ├── app/                 # App Router 页面与布局
+│   │   ├── api/             # API 路由（含 /api/posts CRUD 示例）
+│   │   ├── layout.tsx       # 根布局（MUI 主题与 Emotion 缓存）
+│   │   └── page.tsx         # 首页
+│   ├── components/          # 通用组件
+│   ├── generated/prisma/    # Prisma Client 生成代码（勿手工编辑）
+│   ├── stores/              # 全局状态
+│   ├── theme.ts             # MUI 主题
+│   └── utils/
+│       ├── prisma.ts        # Prisma 客户端（better-sqlite3 适配器）
+│       └── constant.ts      # 常量
+├── eslint.config.mjs        # ESLint 配置
+├── next.config.ts           # Next.js 配置
+├── prisma.config.ts         # Prisma CLI 配置（数据源与 seed）
+└── tsconfig.json            # TypeScript 配置（含 @/* 别名）
+```

@@ -1,8 +1,8 @@
-import 'i18next';
-import type { Resource } from './en_US';
+import "i18next"
+import type { Resource } from "./en_US"
 
-declare module 'i18next' {
+declare module "i18next" {
   interface CustomTypeOptions {
-    resources: Resource;
+    resources: Resource
   }
 }

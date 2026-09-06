@@ -114,7 +114,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 
@@ -124,7 +124,13 @@ table {
 }
 
 body {
-  font-family: PingFang SC, Hiragino Sans GB, Arial, Helvetica, '宋体', sans-serif;
+  font-family:
+    PingFang SC,
+    Hiragino Sans GB,
+    Arial,
+    Helvetica,
+    "宋体",
+    sans-serif;
   line-height: 1;
   background-color: #f1f5fb;
   user-select: none;
@@ -174,8 +180,11 @@ a:visited {
 
 .ant-card-hoverable {
   cursor: pointer;
-  transition: all ease-in .2s;
+  transition: all ease-in 0.2s;
   &:hover {
-    box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+    box-shadow:
+      0 1px 2px -2px rgba(0, 0, 0, 0.16),
+      0 3px 6px 0 rgba(0, 0, 0, 0.12),
+      0 5px 12px 4px rgba(0, 0, 0, 0.09);
   }
 }

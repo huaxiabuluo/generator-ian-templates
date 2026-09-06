@@ -7,41 +7,45 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prisma:init": "prisma generate && prisma migrate dev --name init",
-    "prepare": "husky",
-    "postinstall": "npm run prisma:init"
+    "lint": "eslint",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "typecheck": "tsc --noEmit",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "prisma db seed",
+    "prisma:init": "prisma generate && prisma migrate dev --name init && prisma db seed",
+    "postinstall": "prisma generate"
   },
   "author": {
     "name": "<%= authorName %>",
     "email": "<%= authorEmail %>"
   },
   "dependencies": {
-    "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@mui/icons-material": "^6.0.2",
-    "@mui/material": "^6.0.2",
-    "@mui/material-nextjs": "^6.0.2",
-    "@prisma/client": "5.19.1",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.4.0",
+    "@mui/material": "^9.4.0",
+    "@mui/material-nextjs": "^9.4.0",
+    "@prisma/adapter-better-sqlite3": "7.10.0",
+    "@prisma/client": "7.10.0",
     "await-to-js": "^3.0.0",
-    "next": "^14.2.3",
-    "prisma": "^5.19.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "dotenv": "^17.4.2",
+    "next": "^16.3.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@types/node": "^22.5.4",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "eslint": "^9.9.1",
-    "eslint-config-next": "^14.2.3",
-    "husky": "^9.0.11",
-    "tsx": "^4.19.0",
-    "typescript": "^5.4.5"
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.4",
+    "prettier": "^3.9.6",
+    "prisma": "7.10.0",
+    "tsx": "^4.23.13",
+    "typescript": "^5.9.3"
   },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts",
-    "schema": "./prisma/schema.prisma"
-  }
+  "packageManager": "pnpm@11.5.3"
 }
