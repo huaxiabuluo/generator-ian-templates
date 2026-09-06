@@ -104,7 +104,7 @@ export default class extends Generator {
 
   _initGit() {
     try {
-      this.spawnCommandSync('git', ['init', '--quiet'], {
+      this.spawnSync('git', ['init', '--quiet'], {
         cwd: this.destinationPath(this.props.applicationName),
       });
     } catch (e) {
@@ -203,7 +203,7 @@ export default class extends Generator {
     if (packageManager) {
       this.log(chalk.cyan(`\nInstalling dependencies with ${packageManager}...\n`));
       // pnpm install
-      this.spawnCommandSync(packageManager, ['install'], {
+      this.spawnSync(packageManager, ['install'], {
         cwd: this.destinationPath(applicationName),
       });
     }
