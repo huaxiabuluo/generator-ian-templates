@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:huaxiabuluo/generator-ian-templates.git"
+    "url": "git+ssh://git@github.com/huaxiabuluo/generator-ian-templates.git"
   },
   "homepage": "https://github.com/huaxiabuluo/generator-ian-templates.git",
   "license": "MIT"
